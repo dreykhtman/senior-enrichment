@@ -17,11 +17,6 @@ Student.belongsTo(Campus, {as: 'residence'});
 //   image: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg'
 // });
 
-// Campus.create({
-//   name: 'Uranus',
-//   image: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg'
-// });
-
 module.exports = {
   Student,
   Campus

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './Navbar';
+import StatefulCampuses from './StatefulCampuses';
 
 export default class MainPage extends Component {
   constructor() {
@@ -18,23 +20,14 @@ export default class MainPage extends Component {
   }
   render() {
     return (
-      <div>
+      <Router>
+        <div>
         <Navbar />
-        <div className="row">
-          <div className="col-md-4">
-            <div className="thumbnail">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg"></img>
-              <div className="caption">
-                <h3>{this.state.campuses.map(campus => campus.name)}</h3>
-                <p>...</p>
-                <p><a href="#" className="btn btn-primary" role="button">Button</a></p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">.col-md-4</div>
-          <div className="col-md-4">.col-md-4</div>
+        <Switch>
+          <Route exact path="/" component={StatefulCampuses} />
+        </Switch>
         </div>
-      </div>
+      </Router>
     );
   }
 }
