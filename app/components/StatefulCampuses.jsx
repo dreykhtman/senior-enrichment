@@ -12,10 +12,10 @@ export default class StatefulCampuses extends Component {
   }
 
   componentDidMount () {
-    axios.get('/api')
+    axios.get('/api/campuses')
       .then(res => res.data)
       .then(campuses => {
-        this.setState({ campuses })
+        this.setState({ campuses });
       });
   }
 

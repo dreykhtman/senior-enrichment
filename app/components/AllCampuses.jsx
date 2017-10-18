@@ -14,8 +14,9 @@ const AllCampuses = (props) => {
               <img src={campus.image} />
               <div className="caption">
                 <h3>{campus.name}</h3>
-                <p>...</p>
-                <p><a href="#" className="btn btn-primary" role="button">Button</a></p>
+                <button className="btn btn-secondary">
+                  <Link to={`/campuses/${campus.id}`}>View Campus</Link>
+                </button>
               </div>
             </div>
           </div>

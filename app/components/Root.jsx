@@ -3,6 +3,8 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './Navbar';
 import StatefulCampuses from './StatefulCampuses';
+import SingleCampus from './SingleCampus';
+import AllStudents from './AllStudents';
 
 export default class MainPage extends Component {
   constructor() {
@@ -10,14 +12,14 @@ export default class MainPage extends Component {
 
     this.state = {
       campuses: []
-    }
+    };
   }
 
-  componentDidMount() {
-    axios.get('/api')
-      .then(res => res.data)
-      .then(campuses => this.setState({ campuses }));
-  }
+  // componentDidMount() {
+  //   axios.get('/api/campuses')
+  //     .then(res => res.data)
+  //     .then(campuses => this.setState({ campuses }));
+  // }
   render() {
     return (
       <Router>
@@ -25,6 +27,8 @@ export default class MainPage extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={StatefulCampuses} />
+          <Route exact path="/campuses/:campusId" component={SingleCampus} />
+          <Route exact path="/students" component={AllStudents} />
         </Switch>
         </div>
       </Router>
