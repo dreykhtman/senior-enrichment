@@ -10,13 +10,30 @@
 const Student = require('./student');
 const Campus = require('./campus');
 
-Student.belongsTo(Campus, {as: 'residence'});
+Student.belongsTo(Campus);
+Campus.hasMany(Student);
 
 // Campus.create({
-//   name: 'Moon',
-//   image: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg'
+//   name: 'Venus',
+//   image: 'https://upload.wikimedia.org/wikipedia/commons/8/85/Venus_globe.jpg'
 // });
 
+// Campus.create({
+//   name: 'Neptune',
+//   image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Neptune_Full.jpg/1200px-Neptune_Full.jpg'
+// });
+
+// Student.create({
+//   name: 'Tony',
+//   email: 'tony@mail.com',
+//   campusId: 2
+// })
+
+// Student.create({
+//   name: 'Toby',
+//   email: 'toby@mail.com',
+//   campusId: 3
+// })
 module.exports = {
   Student,
   Campus
