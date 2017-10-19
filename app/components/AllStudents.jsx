@@ -9,6 +9,14 @@ export default class AllStudents extends Component {
     this.state = {
       students: []
     };
+
+    this.deleteStudent = this.deleteStudent.bind(this);
+  }
+
+  deleteStudent(id) {
+    axios.delete(`/api/students/${id}`)
+      .then(res => res.data)
+      .catch(err => console.log(err));
   }
 
   componentDidMount() {
@@ -40,7 +48,7 @@ export default class AllStudents extends Component {
                   <td>{student.name}</td>
                   <td>{student.email}</td>
                   <td>{student.campusId}</td>
-                  <td><button>X</button></td>
+                  <td><button onClick={(e) => this.deleteStudent(student.id, e)}>X</button></td>
                 </tr>
               ))
             }

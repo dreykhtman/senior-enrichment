@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class SingleCampus extends Component {
@@ -54,7 +55,7 @@ export default class SingleCampus extends Component {
                 students && students.map(student => (
                   <tr key={student.id}>
                     <th scope="row">{student.id}</th>
-                    <td>{student.name}</td>
+                    <td><Link to={`/students/${student.id}`}>{student.name}</Link></td>
                   </tr>
                 ))
               }
