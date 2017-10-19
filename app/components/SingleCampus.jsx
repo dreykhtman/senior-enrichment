@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SingleCampusStudents from './SingleCampusStudents';
 
 export default class SingleCampus extends Component {
   constructor() {

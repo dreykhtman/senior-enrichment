@@ -5,15 +5,16 @@ import Navbar from './Navbar';
 import StatefulCampuses from './StatefulCampuses';
 import SingleCampus from './SingleCampus';
 import AllStudents from './AllStudents';
+import AddStudent from './AddStudent';
 
 export default class MainPage extends Component {
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
 
-    this.state = {
-      campuses: []
-    };
-  }
+  //   this.state = {
+  //     campuses: []
+  //   };
+  // }
 
   // componentDidMount() {
   //   axios.get('/api/campuses')
@@ -27,8 +28,9 @@ export default class MainPage extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={StatefulCampuses} />
-          <Route exact path="/campuses/:campusId" component={SingleCampus} />
-          <Route exact path="/students" component={AllStudents} />
+          <Route path="/campuses/:campusId" component={SingleCampus} />
+          <Route path="/students" component={AllStudents} />
+          <Route path="/add-student" component={AddStudent} />
         </Switch>
         </div>
       </Router>

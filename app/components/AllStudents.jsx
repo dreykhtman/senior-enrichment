@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
 export default class AllStudents extends Component {
-  constructor () {
+  constructor() {
     super();
     this.state = {
       students: []
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     axios.get('/api/students')
       .then(res => res.data)
       .then(students => {
@@ -21,29 +22,33 @@ export default class AllStudents extends Component {
   render() {
     let students = this.state.students;
     return (
-      <table className="table table-striped">
-        <thead className="thead-inverse">
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Campus</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            students && students.map(student => (
-              <tr key={student.id}>
-                <th scope="row">{student.id}</th>
-                <td>{student.name}</td>
-                <td>{student.email}</td>
-                <td>{student.campusId}</td>
-                <td><button>X</button></td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+      <div className="container">
+        <table className="table table-striped">
+          <thead className="thead-inverse">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Campus</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              students && students.map(student => (
+                <tr key={student.id}>
+                  <th scope="row">{student.id}</th>
+                  <td>{student.name}</td>
+                  <td>{student.email}</td>
+                  <td>{student.campusId}</td>
+                  <td><button>X</button></td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <Link className="btn btn-primary btn-lg" to="/add-student">Add a student
+        </Link>
+      </div>
     );
   }
 }
