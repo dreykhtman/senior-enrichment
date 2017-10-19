@@ -8,6 +8,15 @@ export default class ManageCampuses extends Component {
     this.state = {
       campuses: []
     };
+
+    this.deleteCampus = this.deleteCampus.bind(this);
+  }
+
+  deleteCampus(id) {
+    axios.delete(`/api/campuses/${id}`)
+      .then(res => res.data)
+      .then(window.location.reload())
+      .catch(err => console.log(err));
   }
 
   componentDidMount () {
@@ -25,7 +34,7 @@ export default class ManageCampuses extends Component {
       <table className="table table-striped">
         <thead className="thead-inverse">
           <tr>
-            <th>#</th>
+            {/* <th>#</th> */}
             <th>Name</th>
             <th>Picture</th>
 
@@ -35,20 +44,18 @@ export default class ManageCampuses extends Component {
           {
             campuses && campuses.map(campus => (
               <tr key={campus.id}>
-                <th scope="row">{campus.id}</th>
+                {/* <th scope="row">{campus.id}</th> */}
                 <td>{campus.name}</td>
                 <td><img className="icon" src={campus.image} alt="" /></td>
-                <td><button>X</button></td>
+                <td><button className="btn btn-danger" onClick={(e) => this.deleteCampus(campus.id, e)}>Delete</button></td>
               </tr>
             ))
           }
         </tbody>
       </table>
-      <Link className="btn btn-primary btn-lg" to="/add-campus">Add a campus
+      <Link className="btn btn-primary" to="/add-campus">Add a campus
         </Link>
     </div>
-    )
+    );
   }
-
-
 }

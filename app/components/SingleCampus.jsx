@@ -11,16 +11,6 @@ export default class SingleCampus extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   const campusId = this.props.match.params.campusId;
-
-  //   axios.get(`/api/campuses/${campusId}`)
-  //     .then(res => res.data)
-  //     .then(campus => this.setState({
-  //       campus
-  //     }));
-  // }
-
   async componentDidMount() {
     const campusId = this.props.match.params.campusId;
     const campusReq = await axios.get(`/api/campuses/${campusId}`)
@@ -66,4 +56,3 @@ export default class SingleCampus extends Component {
     );
   }
 }
-

@@ -7,28 +7,50 @@ export default class AllStudents extends Component {
   constructor() {
     super();
     this.state = {
+      campuses: [],
       students: []
     };
 
     this.deleteStudent = this.deleteStudent.bind(this);
+    this.campusFinder = this.campusFinder.bind(this);
   }
 
   deleteStudent(id) {
     axios.delete(`/api/students/${id}`)
       .then(res => res.data)
+      .then(window.location.reload())
       .catch(err => console.log(err));
   }
 
-  componentDidMount() {
-    axios.get('/api/students')
-      .then(res => res.data)
-      .then(students => {
-        this.setState({ students });
-      });
+  async componentDidMount() {
+    const campusesReq = await axios.get('/api/campuses');
+    const studentsReq = await axios.get('/api/students');
+
+    this.setState({
+      campuses: campusesReq.data,
+      students: studentsReq.data
+    })
+  }
+
+  // componentDidMount() {
+  //   axios.get('/api/students')
+  //     .then(res => res.data)
+  //     .then(students => {
+  //       this.setState({ students });
+  //     });
+  // }
+  campusFinder(studentId) {
+    const campuses = this.state.campuses;
+    let campus = campuses.filter(campus => {
+      return campus.id === studentId;
+    })
+    return campus.map(campus => campus.name)
   }
 
   render() {
-    let students = this.state.students;
+    const students = this.state.students;
+    const campuses = this.state.campuses;
+
     return (
       <div className="container">
         <table className="table table-striped">
@@ -47,14 +69,18 @@ export default class AllStudents extends Component {
                   <th scope="row">{student.id}</th>
                   <td>{student.name}</td>
                   <td>{student.email}</td>
-                  <td>{student.campusId}</td>
-                  <td><button onClick={(e) => this.deleteStudent(student.id, e)}>X</button></td>
+                  <td>
+                    {
+                      this.campusFinder(student.campusId)
+                    }
+                  </td>
+                  <td><button className="btn btn-danger" onClick={(e) => this.deleteStudent(student.id, e)}>Delete</button></td>
                 </tr>
               ))
             }
           </tbody>
         </table>
-        <Link className="btn btn-primary btn-lg" to="/add-student">Add a student
+        <Link className="btn btn-primary" to="/add-student">Add a student
         </Link>
       </div>
     );

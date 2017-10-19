@@ -38,7 +38,6 @@ export default class SingleStudent extends Component {
               <td>{student.name}</td>
               <td>{student.email}</td>
               <td><Link to={`/campuses/${student.campusId}`}>{student.campusId}</Link></td>
-              {console.log('PROPS', this.props)}
             </tr>
           </tbody>
         </table>

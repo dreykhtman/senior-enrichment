@@ -34,4 +34,12 @@ router.get('/:id/students', function(req, res, next) {
     .catch(next);
 });
 
+router.delete('/:id', function (req, res, next) {
+  let id = req.params.id;
+  Campus.findById(id)
+    .then(campus => campus.destroy())
+    .then(() => res.sendStatus(204))
+    .catch(next);
+});
+
 module.exports = router;
