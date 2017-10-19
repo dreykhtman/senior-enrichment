@@ -7,6 +7,15 @@ router.get('/', function (req, res, next) {
     .catch(next);
 });
 
+router.post('/', function (req, res, next) {
+  Campus.create({
+    name: req.body.name,
+    image: req.body.image
+  })
+    .then(campus => res.status(201).json(campus))
+    .catch(next);
+});
+
 router.get('/:id', function(req, res, next) {
   let id = req.params.id;
   Campus.findById(id)
