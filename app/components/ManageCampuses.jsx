@@ -34,7 +34,6 @@ export default class ManageCampuses extends Component {
       <table className="table table-striped">
         <thead className="thead-inverse">
           <tr>
-            {/* <th>#</th> */}
             <th>Name</th>
             <th>Picture</th>
 
@@ -44,7 +43,6 @@ export default class ManageCampuses extends Component {
           {
             campuses && campuses.map(campus => (
               <tr key={campus.id}>
-                {/* <th scope="row">{campus.id}</th> */}
                 <td>{campus.name}</td>
                 <td><img className="icon" src={campus.image} alt="" /></td>
                 <td><button className="btn btn-danger" onClick={(e) => this.deleteCampus(campus.id, e)}>Delete</button></td>

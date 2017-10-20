@@ -22,6 +22,20 @@ router.get('/:id', function (req, res, next) {
   Student.findById(id)
     .then(student => res.json(student))
     .catch(next);
+    // add Campus info to Sudent?
+    // include: [{model: Campus}]
+});
+
+router.put('/:id', function (req, res, next) {
+  let id = req.params.id;
+  Student.findById(id)
+    .then(student => student.update({
+      name: req.body.name,
+      email: req.body.email,
+      campusId: req.body.campusId
+    }))
+    .then(student => res.json(student))
+    .catch(next);
 });
 
 router.delete('/:id', function (req, res, next) {
