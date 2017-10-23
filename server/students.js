@@ -1,8 +1,11 @@
 const router = require('express').Router();
 const { Student } = require('../db/models');
+const { Campus } = require('../db/models');
 
 router.get('/', function (req, res, next) {
-  Student.findAll()
+  Student.findAll({
+    include: [{ model: Campus }]
+  })
     .then(students => res.json(students))
     .catch(next);
 });
@@ -17,13 +20,30 @@ router.post('/', function (req, res, next) {
     .catch(next);
 });
 
+// the original request. uncomment if something's broken
+// router.get('/:id', function (req, res, next) {
+//   let id = req.params.id;
+//   Student.findById(id)
+//     .then(student => res.json(student))
+//     .catch(next);
+//     // add Campus info to Sudent?
+//     // include: [{model: Campus}]
+// });
+
 router.get('/:id', function (req, res, next) {
   let id = req.params.id;
-  Student.findById(id)
+  Student.findOne({
+    include: [
+      { model: Campus }
+    ],
+    where: {
+      id
+    }
+  })
     .then(student => res.json(student))
     .catch(next);
-    // add Campus info to Sudent?
-    // include: [{model: Campus}]
+  // add Campus info to Sudent?
+  // include: [{model: Campus}]
 });
 
 router.put('/:id', function (req, res, next) {

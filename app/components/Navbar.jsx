@@ -14,6 +14,7 @@ export default class Navbar extends Component {
               <li className="active"><a href="#">Home <span className="sr-only">(current)</span></a></li>
               <li><Link to={`/campuses`}>Manage Campuses</Link></li>
               <li><Link to={`/students`}>Manage Students</Link></li>
+              <li><Link to={`/test`}>Test Students</Link></li>{/* remove this later */}
             </ul>
             <p className="navbar-text navbar-right">JS Academy</p>
           </div>

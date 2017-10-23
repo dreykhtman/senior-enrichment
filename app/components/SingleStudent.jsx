@@ -6,7 +6,8 @@ export default class SingleStudent extends Component {
   constructor() {
     super();
     this.state = {
-      student: {}
+      student: {},
+      campus: ''
     };
   }
 
@@ -15,12 +16,17 @@ export default class SingleStudent extends Component {
     axios.get(`/api/students/${id}`)
       .then(res => res.data)
       .then(student => {
-        this.setState({ student });
+        this.setState({
+           student,
+           campus: student.campus.name
+           });
       });
   }
 
   render() {
     const student = this.state.student;
+    const campusName = this.state.campus;
+
     return (
       <div className="container">
         <table className="table table-striped">
@@ -37,7 +43,7 @@ export default class SingleStudent extends Component {
               <th scope="row">{student.id}</th>
               <td>{student.name}</td>
               <td>{student.email}</td>
-              <td><Link to={`/campuses/${student.campusId}`}>{student.campusId}</Link></td>
+              <td><Link to={`/campuses/${student.campusId}`}>{campusName}</Link></td>
             </tr>
           </tbody>
         </table>
