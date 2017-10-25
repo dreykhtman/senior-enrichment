@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import AllStudents from './AllStudents';
+import store, { fetchMessages } from '../store';
 
 export default class StatefulStudents extends Component {
+
   constructor() {
     super();
-
-    this.state = {
-      students: []
-    };
+    this.state = store.getState();
   }
 
   componentDidMount() {
-    axios.get('/api/students')
-      .then(res => res.data)
-      .then(students => {
-        this.setState({ students });
-      });
+    this.unsubscribe = store.subscribe(() => {
+      this.setState(store.getState());
+    });
+
+    store.dispatch(fetchMessages());
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   render() {
-    console.log('Stateful Students state', this.state);
+    console.log('Hello from StatefulStudents.jsx');
     const students = this.state.students;
 
     return (

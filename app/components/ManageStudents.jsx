@@ -72,6 +72,10 @@ export default class ManageStudents extends Component {
         </table>
         <Link className="btn btn-primary" to="/add-student">Add a student
         </Link>
+        <br/>
+        <br/>
+        <Link className="btn btn-primary" to="/add-student-redux">Add a student (redux)
+        </Link>
       </div>
     );
   }

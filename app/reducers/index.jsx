@@ -1,11 +1,16 @@
-import { combineReducers } from 'redux'
+//boilerplate code
 
-const initialState = {}
+// import { combineReducers } from 'redux'
 
-const rootReducer = function(state = initialState, action) {
-  switch(action.type) {
-    default: return state
-  }
-};
+// const initialState = {}
 
-export default rootReducer
+// const rootReducer = function(state = initialState, action) {
+//   switch(action.type) {
+//     default: return state
+//   }
+// };
+
+// export default rootReducer
+
+//******************************************
+
